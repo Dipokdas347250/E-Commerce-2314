@@ -1,9 +1,9 @@
  import React from 'react'
  
- const Container = ({children}) => {
+ const Container = ({children ,className}) => {
    return (
-     <div className={`container mx-auto`}>
-       {children}
+     <div className={`container mx-auto ${className}`}>
+       {children }
      </div>
    )
  }

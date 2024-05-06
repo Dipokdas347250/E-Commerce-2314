@@ -1,4 +1,5 @@
 import Header from "./components/Header"
+import Navber from "./components/Navber"
 
 function App() {
  
@@ -6,6 +7,7 @@ function App() {
   return (
    <>
    <Header/>
+   <Navber/>
    </>
   )
 }
