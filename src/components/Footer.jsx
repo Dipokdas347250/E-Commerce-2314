@@ -58,7 +58,7 @@ const Footer = () => {
                 </div>
                 
                
-                    <div className="flex gap-x-4 mt-[30px]">
+                    <div className="flex gap-x-4 mt-[30px] text-[28px]">
                         <FaFacebookF/>
                         <FaLinkedinIn />
                         <FaInstagram />
