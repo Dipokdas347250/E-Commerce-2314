@@ -6,6 +6,10 @@ import ProductDetails from "./pages/ProductDetails"
 import About from "./pages/About"
 import Contacts from "./pages/Contacts"
 
+import Error from "./pages/Error"
+import Cart from "./pages/Cart"
+
+
 let router = createBrowserRouter(createRoutesFromElements(
   <Route element={<RootLayout/>}>
     <Route index element={<Home/>}></Route>
@@ -13,8 +17,12 @@ let router = createBrowserRouter(createRoutesFromElements(
     <Route path="/Product/:id" element={<ProductDetails/>}></Route>
     <Route path="/About" element={<About/>}></Route>
     <Route path="/Contacts" element={<Contacts/>}></Route>
+    <Route path="/Cart" element={<Cart/>}></Route>
+    
+    <Route path="*" element={<Error/>}></Route>
   </Route>
 ))
+
 
 function App() {
  

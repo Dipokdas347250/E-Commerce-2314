@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
 import { apiData } from '../components/ContextApi';
 import Container from '../components/Container';
 import Flex from '../components/Flex';
@@ -8,12 +9,15 @@ import One01 from "../assets/one.png"
 import { FaStar,FaRegStar ,} from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
+import Faccordain from '../components/Faccordain';
+import { addTocart } from '../components/slice/productSlice';
 
 const ProductDetails = () => {
   let [singleData, setSingleData] = useState([])
   let productId = useParams()
 
   let data = useContext(apiData)
+  let dispatch= useDispatch()
 
 
   let getData = () => {
@@ -35,7 +39,10 @@ const ProductDetails = () => {
       : <FaRegStar/>
     )
   })
- 
+   let handleAddTocart = (item)=>{
+    dispatch(addTocart({...item,qun:1}) )
+    
+   }
  
   return (
     <>
@@ -81,17 +88,15 @@ const ProductDetails = () => {
             </div>
             <div className=" pt-[50px] lg:flex relative   after:absolute after:content-[''] after:h-[1px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0">
               <a className=' font-sans font-bold   lg:text-[22px]  text-[#262626] py-[16px] px-[45px] border-2 border-[#262626] inline-block duration-300 ease-in-out hover:bg-[#262626] hover:text-[#fff]'>Add to Wish List</a>
+              <Link to={"/Cart"} onClick={()=>handleAddTocart(singleData)}>
+
               <a className=' font-sans font-bold   lg:text-[22px] bg-[#262626]  text-[#fff] py-[16px] lg:px-[45px] p-[63px]  border-2 border-[#262626] inline-block lg:ms-4  duration-300 ease-in-out hover:bg-[#fff] hover:text-[#262626]'>Add to Cart</a>
+              </Link>
             </div>
-            <div className=" flex justify-between pt-[50px] items-center  relative   after:absolute after:content-[''] after:h-[1px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 ">
-              <h2 className='font-sans font-bold   text-[22px]  text-[#262626] '>FEATURES  & DETAILS</h2>
-              <FaPlus />
+            <div className="">
+              <Faccordain/>
             </div>
-            <div className=" flex justify-between pt-[50px] items-center  relative   after:absolute after:content-[''] after:h-[1px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 ">
-              <h2 className='font-sans font-bold   text-[22px]  text-[#262626] '>SHIPPING & RETURNS</h2>
-              <FaPlus />
-            </div>
-            <p className='font-sans font-normal  text-[16px]  text-[#262626] pt-[50px]  '>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+           
           </div>
           <div className="flex pt-[100px] items-center">
             <h3 className='font-sans font-normal  text-[22px]  text-[#262626]   '>Description</h3>
