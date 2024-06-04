@@ -21,7 +21,12 @@ export const productSlice = createSlice({
      state.cartItem[action.payload].qun  += 1
     },
     productDecrement:(state,action) =>{
-     state.cartItem[action.payload].qun  -= 1
+      if(state.cartItem[action.payload].qun > 1){
+
+        state.cartItem[action.payload].qun  -= 1
+      }else{
+
+      }
     }
    
   },

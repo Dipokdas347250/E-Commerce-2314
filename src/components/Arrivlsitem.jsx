@@ -1,6 +1,7 @@
 import { FaHeart } from "react-icons/fa";
 import { TfiReload } from "react-icons/tfi";
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 
@@ -21,7 +22,10 @@ const Arrivlsitem = ({item}) => {
                 <ul className='pr-5'>
                     <li className='flex items-center justify-end gap-x-4  duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Add to Wish List <FaHeart/></li>
                     <li className='flex items-center  justify-end gap-x-4 py-3 duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Compear<TfiReload/></li>
+                    <Link to={"/Cart"}>
+                    
                     <li className='flex items-center  justify-end gap-x-4 duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Add to Cart <FaShoppingCart/></li>
+                    </Link>
                 </ul>
             </div>
         </div>
