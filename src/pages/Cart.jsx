@@ -5,10 +5,14 @@ import { GiTireIronCross } from "react-icons/gi";
 import logo01 from "../assets/Logo.png"
 import { useDispatch, useSelector } from 'react-redux'
 import { productIncrement,productDecrement, removeProduct } from '../components/slice/productSlice';
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Cart = () => {
   let dispatch = useDispatch()
+  let navigate = useNavigate()
   let data = useSelector((state)=>state .product.cartItem)
   let handleIncrement = ((index)=>{
     dispatch(productIncrement(index))
@@ -30,8 +34,14 @@ const Cart = () => {
 
 
   },{totalprice:0, totalquantity:0})
-    console.log(totalprice);
-    console.log(totalquantity);
+
+  let handleCheckout = ()=>{
+    toast("Wow so easy!")
+   setTimeout(()=>{
+    navigate("/checkout")
+   },2000)
+  }
+    
 
 
   return (
@@ -92,36 +102,58 @@ const Cart = () => {
         <div className="flex justify-end">
          <div className="">
          <h2 className='font-sans font-bold   text-[24px]  text-[#262626] text-end '>Cart totals</h2>
-          <div className="flex w-[400px] border-2 border-[#222] justify-around">
+          <div className="flex w-[450px] border-2 border-[#222] justify-around mt-5">
             <div className="">
               <h3>Subtotal</h3>
+            </div>
+            <div className="">
+              <h6>-</h6>
             </div>
             <div className="">
               <h4>{totalprice}$</h4>
             </div>
           </div>
-          <div className="flex  w-[400px] border-2 border-[#222] justify-around my-3">
+          <div className="flex  w-[450px] border-2 border-[#222] justify-around my-3">
             <div className="">
             <h3>Quantity</h3>
+            </div>
+            <div className="">
+              <h6>-</h6>
             </div>
             <div className="">
             <h4>{totalquantity}</h4>
             </div>
           </div>
-          <div className="flex  w-[400px] border-2 border-[#222] justify-around">
+          <div className="flex  w-[450px] border-2 border-[#222] justify-around">
             <div className="">
             <h3>total</h3>
+            </div>
+            <div className="">
+              <h6>-</h6>
             </div>
             <div className="">
             <h4>{totalprice}$</h4>
             </div>
           </div>
-          <div className="mt-2">
-            <p  className=' h-[50px] w-[180px] border-2 border-[#262626] bg-[#000] font-sans font-bold   text-[16px]  text-[#fff] text-center duration-300 ease-in-out leading-[50px] hover:bg-[#fff] hover:text-[#262626] cursor-pointer'>Proceed to Checkout</p>
+          <div className="mt-2 ml-[270px] " onClick={handleCheckout}> 
+            <p  className=' h-[50px] w-[180px] border-2 border-[#262626] bg-[#000] font-sans font-bold    text-[16px]  text-[#fff] text-center duration-300 ease-in-out leading-[50px] hover:bg-[#fff] hover:text-[#262626] cursor-pointer'>Proceed to Checkout</p>
           </div>
          
          </div>
         </div>
+        <ToastContainer 
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        
+        />
        </Container>
        
     </section>
