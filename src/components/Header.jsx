@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from './Container'
 import Flex from './Flex'
 import logo from "../assets/Logo.png"
@@ -10,6 +10,7 @@ const Header = () => {
   let [show , setShow] = useState (() =>{
 
   })
+ 
   return (
     <>
     <header className='h-[80px]   px-3'>

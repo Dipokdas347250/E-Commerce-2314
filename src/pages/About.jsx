@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import About01 from "../assets/About01.png"
 import About02 from "../assets/About02.png"
 
+
 const About = () => {
+   
   return (
     <>
     <section className='py-[124px]'>

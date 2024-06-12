@@ -12,7 +12,9 @@ import { FaStarHalfAlt } from "react-icons/fa";
 import Faccordain from '../components/Faccordain';
 import { addTocart } from '../components/slice/productSlice';
 
+
 const ProductDetails = () => {
+  
   let [singleData, setSingleData] = useState([])
   let productId = useParams()
 

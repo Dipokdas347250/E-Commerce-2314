@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Banner from '../components/Banner'
 import Ads from '../components/Ads'
@@ -9,6 +9,7 @@ import Pro2 from '../components/Pro2'
 
 
 const Home = () => {
+ 
   return (
     <>
    
