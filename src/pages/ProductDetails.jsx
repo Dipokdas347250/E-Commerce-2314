@@ -35,7 +35,7 @@ const ProductDetails = () => {
 
   let clientRating = Array.from({length:5},(elm , index)=>{
 
-    let ratingNumber = index + 0.5 
+    let ratingNumber = index + 0.5
     return(
       singleData.rating >= index + 1 ? <FaStar className='text-[#FFD881]' /> :   singleData.rating > ratingNumber ? <FaStarHalfAlt  />
       : <FaRegStar/>

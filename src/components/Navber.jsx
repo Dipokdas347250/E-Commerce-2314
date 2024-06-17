@@ -7,8 +7,14 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { GiTireIronCross } from "react-icons/gi";
 import Cartimg from "../assets/Cart.png"
+import {useSelector} from "react-redux"
 
 const Navber = () => {
+    
+    let data = useSelector((state)=>state.product.cartItem)
+    let [category,setCategory] = useState ([])
+    
+
     let [cartShow, setCartShow] = useState(false)  
     let [userShow, setUserShow] = useState(false)
     let [myShow, setMyShow] = useState(false)
@@ -18,6 +24,15 @@ const Navber = () => {
     let usertref = useRef()
     let mytref = useRef()
     
+
+    const {totalprice,totalquantity} = data.reduce((acc,item) =>{
+        acc.totalprice += item.price * item.qun
+        acc.totalquantity += item.qun
+
+
+        return acc
+
+    },{totalprice:0,totalquantity:0})
    
 
     useEffect (() =>{
@@ -40,6 +55,11 @@ const Navber = () => {
        }
     })
     },[cartShow,userShow,myShow])
+
+    useEffect(()=>{
+        setCategory([...new Set(data.map((item)=>item.category))])
+    },[data])
+    
   return (
    <>
    <div className="bg-[#D8D8D8] h-[100px] px-3 z-0  ">
@@ -58,12 +78,11 @@ const Navber = () => {
             {cartShow &&
             <div className=" absolute z-50 top-[58px] left-0 bg-[#262626] w-[300px] rounded-lg">
                 <ul>
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Accesories</li>
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6'>Furniture</li>
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6'>Electronics</li>
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6'>Clothes</li> 
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6'>Bags</li>
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6'>Home appliances</li>
+                    {category.map((item)=>(
+
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>{item}</li>
+                    
+                    ))}
                 </ul>
             </div>
             }
@@ -96,8 +115,14 @@ const Navber = () => {
                 </div>
                   }
                 <div ref={usertref} className="cursor-pointer">
+                   <div className="relayive text-center">
                     <FaShoppingCart/>
+                    {data.length  > 0 ? <div className="absolute h-[20px] w-[20px] border-2 border-[#262626] rounded-full leading-[20px] text-center top-[-20px]  right-[-10px]">
 
+                    {data.length}  </div> :  "" }
+                  
+                 
+                   </div>
                 </div>
             </div>
 
@@ -123,7 +148,7 @@ const Navber = () => {
               </div>
             </div>
             <div className="w-[360px] bg-[#fff] absolute z-50 top-[150px] right-0 py-7">
-                    <h2 className='pl-5 font-sans font-medium   text-[16px]  text-[#262626]'>Subtotal: <span className='font-sans  font-bold   text-[16px]  text-[#262626]'> $44.00</span></h2>
+                    <h2 className='pl-5 font-sans font-medium   text-[16px]  text-[#262626]'>Subtotal: <span className='font-sans  font-bold   text-[16px]  text-[#262626]'>{totalprice}$</span></h2>
                     <div className="flex justify-around pt-2">
                         <div className="">
                             <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px] bg-[#000]  text-[#fff] duration-500 ease-in-out hover:bg-[#fff] hover:text-[#262626]' href="#">View Cart</a>

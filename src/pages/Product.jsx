@@ -30,13 +30,14 @@ const Product = () => {
 
 
   let pageNumber = []
-   
   let [category,setCategory] = useState([])
+  let [categorySearchFilter,setCategorySearchFilter] = useState([])
+   
   let [brande,setBrande] = useState([])
   let [priced,setPriced] = useState([])
 
 
-  for (let i = 0; i < Math.ceil(data.length / parPages); i++) {
+  for (let i = 0; i < Math.ceil( categorySearchFilter.length > 0 ? categorySearchFilter : data.length / parPages); i++) {
     pageNumber.push(i)
   }
 
@@ -70,7 +71,15 @@ const Product = () => {
   useEffect(()=>{
     setPriced([...new Set(data.map((item)=>item.price)) ])
   },[data])
-   console.log(priced);
+  
+  
+  let handleSubcate = (citem) =>{
+    let categoryFilter = data.filter((item)=> item.category == citem)
+    setCategorySearchFilter(categoryFilter)
+  }
+
+
+
   return (
     <>
       <section className='py-[124px] '>
@@ -92,7 +101,7 @@ const Product = () => {
                  <ul className=''>
                     {category.map((item)=>(
 
-                 <li className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0'>{item}</li>
+                 <li onClick={()=>handleSubcate(item)} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer'>{item}</li>
                     ))}
                
                </ul>
@@ -202,7 +211,7 @@ const Product = () => {
                 </div>
               </div>
               <div className="flex justify-between flex-wrap">
-                <Post allData={allData} />
+                <Post allData={allData} categorySearchFilter={categorySearchFilter} />
 
               </div>
               <div className="text-end">
