@@ -9,7 +9,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Post from '../components/pagination/Post';
 import PaginationArea from '../components/pagination/PaginationArea';
-
+import { FaListUl } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
 import { FaBars } from "react-icons/fa6";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
@@ -35,6 +35,8 @@ const Product = () => {
    
   let [brande,setBrande] = useState([])
   let [priced,setPriced] = useState([])
+
+  let [meltiList,setMeltiList] = useState("")
 
 
   for (let i = 0; i < Math.ceil( categorySearchFilter.length > 0 ? categorySearchFilter : data.length / parPages); i++) {
@@ -77,7 +79,10 @@ const Product = () => {
     let categoryFilter = data.filter((item)=> item.category == citem)
     setCategorySearchFilter(categoryFilter)
   }
-
+  
+  let handlelist=  () =>{
+    setMeltiList("activeList");
+  }
 
 
   return (
@@ -90,7 +95,7 @@ const Product = () => {
             <h3 className='font-sans font-bold   text-[16px]  text-[#262626] '>Home  +  Products</h3>
           </div>
           <Flex className="py-[100px] justify-between flex-wrap">
-            <div className="w-[28%]">
+            <div className="lg:w-[28%] w-full ">
               <div className="">
                 <div className="">
                  
@@ -166,33 +171,38 @@ const Product = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[68%]">
-              <div className=" lg:flex items-center">
-                <div className="w-[40%]  flex lg:gap-x-8 items-center  ">
-                  <div className=" lg:border-2 lg:border-black lg:h-[50px] lg:w-[50px]  text-center  ">
-                    < IoGrid className=' text-black text-[24px] font-sans font-bold  text-center leading-[50px] mt-[10px] ml-[10px]  ' />
-                  </div>
-                  <div className=" lg:border-2 lg:border-black lg:h-[50px] lg:w-[50px] text-center   ">
-                    < FaBars className=' text-black text-[24px] font-sans font-bold  text-center leading-[50px] mt-[11px] ml-[11px]' />
-                  </div>
-
-
+            <div className="lg:w-[68%] w-full">
+              <div className=" lg:flex items-center justify-around ">
+                <div className="lg:w-[20%]  w-[full] flex justify-around lg:px-0  px-10    items-center  ">
+                 <div onClick={()=>setMeltiList("")} className={`lg:h-[50px] h-[40px] lg:w-[50px] w-[40px] flex justify-center items-center text-[#000] ${meltiList == "activeList" ? "bg-[#fff]" : "bg-[#000] text-[#fff]" }  duration-300 ease-in-out border-[1px] border-[#000] text-[20px]`}>
+                 < IoGrid />
+                 </div>
+                 <div onClick={handlelist} className={`lg:h-[50px] h-[40px] lg:w-[50px] w-[40px] flex justify-center items-center text-[#000] ${meltiList == "activeList" ? "bg-[#000] text-[#fff]" : "bg-[#fff]" }  duration-300 ease-in-out border-[1px] border-[#000] text-[20px]`}>
+                 < FaListUl/>
+                 </div>
                 </div>
-                <div className="lg:w-[35%] w-full">
+                <div className="lg:w-[45%] w-
+                [100%]">
                   <div className="">
-                    <div className="relative flex items-center gap-x-2">
+                  <label htmlFor="" className='text-[16px] font-sans text-[#767676] font-normal'>Sort by: </label>
+                    <select name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[100px] px-[70px] py-[8px] text-[16px] font-sans text-[#767676] font-normal lg:mt-0 mt-[20px]'>
+                      <option value="">Featured...</option>
+                      <option value="">30</option>
+                      <option value="">24</option>
+                    </select>
+                    {/* <div className="relative flex items-center gap-x-2">
                       <h4 className='font-sans font-bold   text-[16px]  text-[#262626]'>Sort by:</h4>
                       <input placeholder='Featured...' type="search" className='lg:w-[70%] w-[65%]  lg:h-[50px]  h-[50px] top-[50px] border-2  outline-none px-3 rounded-lg ' />
                       <div className="absolute top-[50%] translate-y-[-50%] right-[50px] text-[26px]">
                         <TiArrowSortedDown />
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
-                <div className="lg:w-[25%] w-full">
+                <div className="lg:w-[35%] w-full">
                 <div className="">
                     <label htmlFor="" className='text-[16px] font-sans text-[#767676] font-normal'>Show : </label>
-                    <select name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[60px] px-[25px] py-[5px] text-[16px] font-sans text-[#767676] font-normal'>
+                    <select name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[100px] px-[100px] py-[8px] text-[16px] font-sans text-[#767676] font-normal lg:mt-0 mt-[20px]'>
                       <option value="">36</option>
                       <option value="">30</option>
                       <option value="">24</option>
@@ -210,8 +220,8 @@ const Product = () => {
                   </div> */}
                 </div>
               </div>
-              <div className="flex justify-between flex-wrap">
-                <Post allData={allData} categorySearchFilter={categorySearchFilter} />
+              <div className="">
+                <Post allData={allData} categorySearchFilter={categorySearchFilter} meltiList={meltiList} />
 
               </div>
               <div className="text-end">

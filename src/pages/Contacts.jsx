@@ -38,7 +38,7 @@ const Contacts = () => {
                                
                             </div>
                             <div className="pt-[50px]">
-                                    <img src={Map} alt="" />
+                            <iframe className='w-[100%] lg:h-[500px] h-[200px]' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.1591649816146!2d90.37928372492564!3d23.741702931029586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b7a55cd36f%3A0xfcc5b021faff43ea!2sCreative%20IT%20Institute!5e0!3m2!1sen!2sbd!4v1719603281892!5m2!1sen!2sbd" ></iframe>
                                 </div>
                         </div>
                     </div>

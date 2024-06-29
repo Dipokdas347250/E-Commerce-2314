@@ -74,25 +74,25 @@ const Cart = () => {
               </div>
              
               <div className="">
-                <img className='w-[100px] h-[100px]' src={item.thumbnail} alt="" />
+                <img className='lg:w-[100px] lg:h-[100px]' src={item.thumbnail} alt="" />
               </div>
               <div className="">
-                <h5 className='font-sans font-semibold   text-[16px]  text-[#262626]  '> {item.title}</h5>
+                <h5 className='font-sans lg:font-semibold font-normal   lg:text-[16px] text-[14px]  text-[#262626]  '> {item.title}</h5>
               </div>
             </div>
           </div>
           <div className="w-[15%]">
-            <h4 className='font-sans font-semibold   text-[16px]  text-[#262626] text-center '>${item.price}</h4>
+            <h4 className='font-sans lg:font-semibold   lg:text-[16px] text:[14px]  text-[#262626] text-center '>${item.price}</h4>
           </div>
           <div className="w-[30%]">
-          <div className=" flex w-[120px] h-[40px]  justify-around items-center  mx-auto ">
-                <div onClick={()=> handleDecrement(index)} className="cursor-pointer font-sans font-semibold   text-[20px]  text-[#262626] ">-</div>
-                <div className="font-sans font-bold   text-[22px]  text-[#262626]">{item.qun}</div>
-                <div onClick={()=> handleIncrement(index)} className="cursor-pointer font-sans font-semibold   text-[20px]  text-[#262626]">+</div>
+          <div className=" flex lg:w-[120px] w-[60px] lg:h-[40px] h-[20px]  justify-around items-center  mx-auto ">
+                <div onClick={()=> handleDecrement(index)} className="cursor-pointer font-sans font-semibold   lg:text-[20px] text-[16px]  text-[#262626] ">-</div>
+                <div className="font-sans font-bold  lg:text-[22px] text-[16px]  text-[#262626]">{item.qun}</div>
+                <div onClick={()=> handleIncrement(index)} className="cursor-pointer font-sans font-semibold   lg:text-[20px] text-[16px]  text-[#262626]">+</div>
               </div>
           </div>
           <div className="w-[15%]">
-          <h4 className='font-sans font-semibold   text-[16px]  text-[#262626] text-center '>${item.price * item.qun}</h4>
+          <h4 className='font-sans font-semibold   lg:text-[16px] text-[14px]  text-[#262626] text-center '>${item.price * item.qun}</h4>
           </div>
 
         </Flex>
@@ -102,7 +102,7 @@ const Cart = () => {
         <div className="flex justify-end">
          <div className="">
          <h2 className='font-sans font-bold   text-[24px]  text-[#262626] text-end '>Cart totals</h2>
-          <div className="flex w-[450px] border-2 border-[#222] justify-around mt-5">
+          <div className="flex lg:w-[450px] w-[300px] border-2 border-[#222] justify-around ml-[30%]  lg:ml-0  mt-5">
             <div className="">
               <h3>Subtotal</h3>
             </div>
@@ -113,7 +113,7 @@ const Cart = () => {
               <h4>{totalprice}$</h4>
             </div>
           </div>
-          <div className="flex  w-[450px] border-2 border-[#222] justify-around my-3">
+          <div className="flex lg:w-[450px] w-[300px] border-2 border-[#222] justify-around ml-[30%]  lg:ml-0   my-3">
             <div className="">
             <h3>Quantity</h3>
             </div>
@@ -124,7 +124,7 @@ const Cart = () => {
             <h4>{totalquantity}</h4>
             </div>
           </div>
-          <div className="flex  w-[450px] border-2 border-[#222] justify-around">
+          <div className="flex lg:w-[450px] w-[300px] border-2 border-[#222] justify-around ml-[30%]  lg:ml-0  ">
             <div className="">
             <h3>total</h3>
             </div>
@@ -135,7 +135,7 @@ const Cart = () => {
             <h4>{totalprice}$</h4>
             </div>
           </div>
-          <div className="mt-2 ml-[270px] " onClick={handleCheckout}> 
+          <div className="mt-2 lg:ml-[270px] ml-[250px] " onClick={handleCheckout}> 
             <p  className=' h-[50px] w-[180px] border-2 border-[#262626] bg-[#000] font-sans font-bold    text-[16px]  text-[#fff] text-center duration-300 ease-in-out leading-[50px] hover:bg-[#fff] hover:text-[#262626] cursor-pointer'>Proceed to Checkout</p>
           </div>
          

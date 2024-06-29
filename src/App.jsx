@@ -9,7 +9,7 @@ import Contacts from "./pages/Contacts"
 import Error from "./pages/Error"
 import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
-import { useEffect } from "react"
+
 
 
 let router = createBrowserRouter(createRoutesFromElements(
@@ -21,8 +21,8 @@ let router = createBrowserRouter(createRoutesFromElements(
     <Route path="/Contacts" element={<Contacts/>}></Route>
     <Route path="/Cart" element={<Cart/>}></Route>
     <Route path="/Checkout" element={<Checkout/>}></Route>
-    
     <Route path="*" element={<Error/>}></Route>
+    
   </Route>
 ))
 

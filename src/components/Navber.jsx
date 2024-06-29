@@ -78,11 +78,16 @@ const Navber = () => {
             {cartShow &&
             <div className=" absolute z-50 top-[58px] left-0 bg-[#262626] w-[300px] rounded-lg">
                 <ul>
-                    {category.map((item)=>(
-
-                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>{item}</li>
                     
-                    ))}
+
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Dipok</li>
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Dipok</li>
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Dipok</li>
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Dipok</li>
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Dipok</li>
+                    <li className='text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 '>Dipok</li>
+                    
+                   
                 </ul>
             </div>
             }
