@@ -74,16 +74,7 @@ const ProductDetails = () => {
             <div className=" pt-[20px]">
               <h4 className=' relative font-sans font-bold   text-[28px]  text-[#262626]  after:absolute after:content-[""] after:h-[1px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0' > price : {singleData.price}$</h4>
             </div>
-            <div className="flex relative  pt-[50px] items-center after:absolute after:content-[''] after:h-[1px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0">
-              <div className="">
-                <h5 className='font-sans font-bold   text-[22px]  text-[#262626] '>QUANTITY:</h5>
-              </div>
-              <div className=" flex w-[120px] h-[40px] border-2 border-[#262626] justify-around items-center ml-[20px] ">
-                <div className="">-</div>
-                <div className="">0</div>
-                <div className="">+</div>
-              </div>
-            </div>
+            
             <div className="flex relative  pt-[50px] items-center after:absolute after:content-[''] after:h-[1px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0">
               <h3 className='font-sans font-bold   text-[22px]  text-[#262626] '>STATUS :</h3>
               <h4 className='font-sans font-semibold   text-[22px]  text-[#262626] ml-[20px]'>{singleData.stock}</h4>

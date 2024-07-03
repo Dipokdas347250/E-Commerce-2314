@@ -6,7 +6,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
 const Post = ({ allData, categorySearchFilter ,meltiList}) => {
-   console.log(meltiList);
+  
 
   let [filtershow, setFilterShow] = useState([])
 
