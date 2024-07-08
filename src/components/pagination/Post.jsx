@@ -40,15 +40,15 @@ const Post = ({ allData, categorySearchFilter ,meltiList}) => {
       {categorySearchFilter.length > 0 ?
 
         <div className="">
-          <div className="flex flex-wrap ">
+          <div className="flex flex-wrap">
           {filtershow.map((item) => (
 
-            <div className="lg:w-[32%] py-5 ">
+            <div className="lg:w-[32%]  py-5 ">
               <Link to={`/product/${item.id}`}>
                 <div className="">
 
                   <div className="relative group overflow-hidden ">
-                    <img src={item.thumbnail} className="lg:h-[350px] h-[250px]" alt="123" />
+                    <img src={item.thumbnail} className="lg:h-[200px] h-[200px]" alt="123" />
                     <div className="bg-[#fff] absolute duration-300 ease-in-out left-0 bottom-[-150px] h-[150px]  w-full group-hover:bottom-[0] flex items-center justify-end">
                       <ul className='pr-5'>
                         <li className='flex items-center justify-end gap-x-4  duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Add to Wish List <FaHeart /></li>
@@ -72,7 +72,7 @@ const Post = ({ allData, categorySearchFilter ,meltiList}) => {
       
         <button onClick={handleShow} className=' border-2 border-[#222] h-[50px] w-[200px] rounded-3xl font-sans font-semibold text-[18px] text-[#000] text-center ml-[50%] translate-x-[-50%] duration-300 ease-in-out hover:bg-[#000] hover:text-[#fff]'>ShowAll</button>
         :
-        <button onClick={handleHide} >Hide</button>
+        <button onClick={handleHide}  className=' border-2 border-[#222] h-[50px] w-[200px] rounded-3xl font-sans font-semibold text-[18px] text-[#000] text-center ml-[50%] translate-x-[-50%] duration-300 ease-in-out hover:bg-[#000] hover:text-[#fff]' >Hide</button>
       
       }
         </div>

@@ -20,7 +20,7 @@ const Product = () => {
   let data = useContext(apiData)
 
   let [currentPages, setCurrentpages] = useState(1)
-  let [parPages, setPerPages] = useState(9)
+  let [parPages, setPerPages] = useState(18)
 
   let LastPages = currentPages * parPages
   let FirstPages = LastPages - parPages
@@ -66,10 +66,10 @@ const Product = () => {
   useEffect(()=>{
     setCategory([...new Set(data.map((item)=>item.category))])
     
-  },[data])
-  useEffect(()=>{
+    
     setBrande([...new Set(data.map((item)=>item.brand)) ])
   },[data])
+  
   useEffect(()=>{
     setPriced([...new Set(data.map((item)=>item.price)) ])
   },[data])
@@ -78,7 +78,23 @@ const Product = () => {
   let handleSubcate = (citem) =>{
     let categoryFilter = data.filter((item)=> item.category == citem)
     setCategorySearchFilter(categoryFilter)
+    
   }
+
+  let handleBrande = (citem) =>{
+    let brandeFilter = data.filter((item)=> item.brand == citem)
+    setCategorySearchFilter(brandeFilter)
+
+    
+  }
+
+  let handlePrice = (citem) =>{
+    let PriceFilter = data.filter((item)=> item.price == citem)
+    setCategorySearchFilter(PriceFilter)
+  }
+  
+
+
   
   let handlelist=  () =>{
     setMeltiList("activeList");
@@ -99,14 +115,14 @@ const Product = () => {
               <div className="">
                 <div className="">
                  
-                    <h2 onClick={()=>setCatShow (!catshow)}  className='font-sans font-bold   lg:text-[28px]  text-[#262626] flex justify-between items-center cursor-pointer '>Shop by Category {catshow == true ?  <TiArrowSortedUp className='text-[28px]' /> : <TiArrowSortedDown className='text-[28px]' />}</h2>
+                    <h2 onClick={()=>setCatShow (!catshow)}  className='font-sans font-bold   lg:text-[28px]  text-[#262626] flex justify-between items-center  cursor-pointer '>Shop by Category {catshow == true ?  <TiArrowSortedUp className='text-[28px] ' /> : <TiArrowSortedDown className='text-[28px] ' />}</h2>
                    
                     
                  {catshow &&
-                 <ul className=''>
+                 <ul className='overflow-y-scroll h-[300px] '>
                     {category.map((item)=>(
 
-                 <li onClick={()=>handleSubcate(item)} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer'>{item}</li>
+                 <li onClick={()=>handleSubcate(item)} className='  relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px] '>{item}</li>
                     ))}
                
                </ul>
@@ -141,10 +157,10 @@ const Product = () => {
                     
                   </div>
                   {brandshow &&
-                  <ul className=''>
+                  <ul className='overflow-y-scroll h-[300px] '>
                     {brande.map((item)=>(
 
-                  <li className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0'>{item}</li>
+                  <li  onClick={()=>handleBrande(item)} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] cursor-pointer after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 duration-300 ease-in-out hover:ml-[10px]'>{item}</li>
                     ))}
                  
                 </ul>
@@ -159,10 +175,10 @@ const Product = () => {
                     
                   </div>
                   {priceshow &&
-                  <ul className=''>
+                  <ul className='overflow-y-scroll h-[300px] '>
                     {priced.map((item)=>(
 
-                  <li className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0'>${item}</li>
+                  <li onClick={()=>handlePrice(item)} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>${item}</li>
                     ))}
                 
                 </ul>
@@ -224,7 +240,7 @@ const Product = () => {
                 <Post allData={allData} categorySearchFilter={categorySearchFilter} meltiList={meltiList} />
 
               </div>
-              <div className="text-end">
+              <div className="lg:text-end">
                 <PaginationArea pageNumber={pageNumber} paginate={paginate} currentPages={currentPages} next={next} prev={prev} />
               </div>
 

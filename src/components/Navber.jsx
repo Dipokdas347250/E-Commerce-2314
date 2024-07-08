@@ -7,9 +7,10 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 import { FaShoppingCart } from 'react-icons/fa';
 import { GiTireIronCross } from 'react-icons/gi';
 import Cartimg from '../assets/Cart.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { apiData } from './ContextApi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { removeProduct } from './slice/productSlice';
 
 const Navber = () => {
     let info = useContext(apiData);
@@ -27,6 +28,10 @@ const Navber = () => {
     let cartref = useRef();
     let usertref = useRef();
     let mytref = useRef();
+
+    
+
+   
   
     const { totalprice, totalquantity } = data.reduce(
         (acc, item) => {
@@ -187,15 +192,17 @@ const Navber = () => {
                                             <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px] bg-[#000]  text-[#fff] duration-500 ease-in-out hover:bg-[#fff] hover:text-[#262626]' href="#">My Account</a>
                                         </div>
                                         <div className="">
-                                            <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out bg-white hover:bg-[#000] hover:text-[#fff]' href="#">Log Out</a>
+                                            <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out bg-white hover:bg-[#000] hover:text-[#fff]' href="#">
+                                                <Link to="/Login">Log In</Link>
+                                            </a>
                                         </div>
                                         <div className="">
-                                            <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out bg-white hover:bg-[#000] hover:text-[#fff]' href="#">Sign up</a>
+                                            <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out bg-white hover:bg-[#000] hover:text-[#fff]' ><Link to="/Signup">Sign up</Link></a>
                                         </div>
                                     </div>
                                 }
                                 <div ref={usertref} className="cursor-pointer">
-                                    <div className="relayive text-center">
+                                    <div className="relayive text-center" >
                                         <FaShoppingCart />
                                         {data.length > 0 ? <div className="absolute h-[20px] w-[20px] border-2 border-[#262626] rounded-full leading-[20px] text-center top-[-20px]  right-[-10px]">
 
@@ -211,14 +218,16 @@ const Navber = () => {
                             {userShow &&
                                 <div className="">
                                     <div className="w-[360px] bg-[#F5F5F3] absolute z-50 top-[58px] right-0">
-                                        <div className="py-3">
+                                        {data.map((item)=>(
+
+                                        <div className="py-3 px-3">
                                             <div className="flex justify-around items-center">
                                                 <div className="">
-                                                    <img src={Cartimg} alt="" />
+                                                    <img className=' w-[100px] h-[100px]' src={item.thumbnail} alt="" />
                                                 </div>
                                                 <div className="font-sans  font-bold   text-[16px]  text-[#262626]">
-                                                    <h2>Black Smart Watch</h2>
-                                                    <h3>$44.00</h3>
+                                                    <h2>{item.title}</h2>
+                                                    <h3>{item.price}$</h3>
                                                 </div>
                                                 <div className="">
                                                     <GiTireIronCross />
@@ -226,8 +235,8 @@ const Navber = () => {
                                             </div>
 
                                         </div>
-                                    </div>
-                                    <div className="w-[360px] bg-[#fff] absolute z-50 top-[150px] right-0 py-7">
+                                        ))}
+                                         
                                         <h2 className='pl-5 font-sans font-medium   text-[16px]  text-[#262626]'>Subtotal: <span className='font-sans  font-bold   text-[16px]  text-[#262626]'>{totalprice}$</span></h2>
                                         <div className="flex justify-around pt-2">
                                             <div className="">
@@ -237,7 +246,9 @@ const Navber = () => {
                                                 <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out hover:bg-[#000] hover:text-[#fff]' href="#">Checkout</a>
                                             </div>
                                         </div>
+                                    
                                     </div>
+                                   
                                 </div>
 
 

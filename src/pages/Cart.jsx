@@ -14,6 +14,8 @@ const Cart = () => {
   let dispatch = useDispatch()
   let navigate = useNavigate()
   let data = useSelector((state)=>state .product.cartItem)
+
+  
   let handleIncrement = ((index)=>{
     dispatch(productIncrement(index))
   })

@@ -1,8 +1,21 @@
 import React from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
+import { useSelector } from 'react-redux'
 
 const Checkout = () => {
+  let data = useSelector((state)=>state .product.cartItem)
+
+  const {totalprice, totalquantity} = data.reduce((acc , item)=>{
+    acc.totalprice += item.price * item.qun
+    acc.totalquantity += item.qun
+
+    return acc
+
+
+  },{totalprice:0, totalquantity:0})
+
+
   return (
     <section className='py-[100px]'>
 
@@ -80,35 +93,35 @@ const Checkout = () => {
           </div>
           <div className="flex lg:w-[50%] w-full  border-2 border-[#222] justify-around  py-[7px] ">
             <div className="">
-            <h3>Product name x 1</h3>
-            </div>
-            <div className="">
-              <h6>-</h6>
-            </div>
-            <div className="">
-            <h4>389.99 $</h4>
-            </div>
-          </div>
-          <div className="flex lg:w-[50%] w-full  border-2 border-[#222] justify-around  py-[7px] ">
-            <div className="">
             <h3>Subtotal</h3>
             </div>
             <div className="">
               <h6>-</h6>
             </div>
             <div className="">
-            <h4>389.99 $</h4>
+            <h4>{totalprice} $</h4>
             </div>
           </div>
           <div className="flex lg:w-[50%] w-full  border-2 border-[#222] justify-around  py-[7px] ">
             <div className="">
-            <h3>total</h3>
+            <h3> Quantity</h3>
             </div>
             <div className="">
               <h6>-</h6>
             </div>
             <div className="">
-            <h4>389.99 $</h4>
+            <h4>{totalquantity}</h4>
+            </div>
+          </div>
+          <div className="flex lg:w-[50%] w-full  border-2 border-[#222] justify-around  py-[7px] ">
+            <div className="">
+            <h3>Total price</h3>
+            </div>
+            <div className="">
+              <h6>-</h6>
+            </div>
+            <div className="">
+            <h4>{totalprice} $</h4>
             </div>
           </div>
         </div>
