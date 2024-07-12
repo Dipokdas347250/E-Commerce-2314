@@ -11,6 +11,7 @@ import Cart from "./pages/Cart"
 import Checkout from "./pages/Checkout"
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
+import { Myaccount } from "./pages/Myaccount"
 
 
 
@@ -25,6 +26,7 @@ let router = createBrowserRouter(createRoutesFromElements(
     <Route path="/Checkout" element={<Checkout/>}></Route>
     <Route path="/Signup" element={<Signup/>}></Route>
     <Route path="/Login" element={<Login/>}></Route>
+    <Route path="/account" element={<Myaccount/>}></Route>
     <Route path="*" element={<Error/>}></Route>
     
   </Route>

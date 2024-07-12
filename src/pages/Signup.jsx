@@ -3,16 +3,19 @@ import Container from '../components/Container'
 import Flex from '../components/Flex'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile  } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { getDatabase, ref, set } from "firebase/database";
 
 const Signup = () => {
 
     const auth = getAuth();
-    let navigate = useNavigate()
-
+    const db = getDatabase();
+    let navigate = useNavigate();
+    let [firstname, setFirstname] = useState("")
+    let [lastname, setLastname] = useState("")
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let [pshow, setPshow] = useState(false)
@@ -20,11 +23,36 @@ const Signup = () => {
     let handleSubmit = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((user) => {
+                
+                
+            })
+           
+            .then(()=>{
+                updateProfile(auth.currentUser, {
+                    displayName: firstname, lastname,
+                  })
+            })
+            .then(()=>{
                 toast("Go TO Login")
+                setEmail("")
+                setPassword("")
                 setTimeout(() => {
                     navigate("/login")
                     
-                }, 2000);
+                }, 2000)
+                })
+            
+            
+            
+            .then(()=>{
+                set(ref(db, 'user/'), {
+                    username: firstname,
+                    lastname: lastname,
+                    email: email,
+                  });
+            })
+            .then(()=>{
+                console.log("done");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -33,7 +61,13 @@ const Signup = () => {
                 console.log(errorMessage);
             });
     }
+    let handleFirstname = (e) =>{
+        setFirstname(e.target.value);
+    }
 
+    let handleLastname = (e) =>{
+        setLastname(e.target.value);
+    }
 
     let handleEmail = (e) => {
         setEmail(e.target.value);
@@ -45,7 +79,7 @@ const Signup = () => {
         setPassword(e.target.value);
     }
     return (
-        <section className=' py-[100px]'>
+        <section className=' lg:py-[150px]'>
             <Container>
                 <form action="">
                     <div className=" items-center relative after:absolute after:contain-[''] after:h-[2px] after:w-[100%] after:bottom-[-50px] after:left-0 after:bg-[#BCC6CC]">
@@ -72,11 +106,11 @@ const Signup = () => {
 
                         <div className="lg:w-[48%] w-full lg:px-0 px-3">
                             <h3 className='font-sans font-bold   text-[18px]  text-[#262626] pt-[50px] '>First Name</h3>
-                            <input className='w-full h-[50px] border-b-2 outline-none' type="text" placeholder='First Name...' />
+                            <input onChange={handleFirstname}  className='w-full h-[50px] border-b-2 outline-none' type="text" placeholder='First Name...' />
                         </div>
                         <div className="lg:w-[48%] w-full lg:px-0 px-3">
-                            <h3 className='font-sans font-bold   text-[18px]  text-[#262626] pt-[50px] '>Last Name</h3>
-                            <input className='w-full h-[50px] border-b-2 outline-none' type="text" placeholder='Last Name...' />
+                            <h3  className='font-sans font-bold   text-[18px]  text-[#262626] pt-[50px] '>Last Name</h3>
+                            <input onChange={handleLastname} className='w-full h-[50px] border-b-2 outline-none' type="text" placeholder='Last Name...' />
                         </div>
 
 
@@ -89,7 +123,7 @@ const Signup = () => {
 
                         <div className="lg:w-[48%] w-full lg:px-0 px-3">
                             <h3 className='font-sans font-bold   text-[18px]  text-[#262626] pt-[50px] '>Email address</h3>
-                            <input onChange={handleEmail} className='w-full h-[50px] border-b-2 outline-none' type="text" placeholder='Your Email address...' />
+                            <input onChange={handleEmail} value={email} className='w-full h-[50px] border-b-2 outline-none' type="text" placeholder='Your Email address...' />
                         </div>
                         <div className="lg:w-[48%] w-full lg:px-0 px-3">
                             <h3 className='font-sans font-bold   text-[18px]  text-[#262626] pt-[50px] '>Phone</h3>
@@ -158,7 +192,7 @@ const Signup = () => {
 
                         <div className="lg:w-[48%] w-full lg:px-0 px-3 relative ">
                             <h3 className='font-sans font-bold   text-[18px]  text-[#262626] pt-[50px] '>Password </h3>
-                            <input onChange={handlepassword} className='w-full h-[50px] border-b-2 outline-none' type={pshow ? "text" : "password"} placeholder='Password' />
+                            <input onChange={handlepassword} value={password} className='w-full h-[50px] border-b-2 outline-none' type={pshow ? "text" : "password"} placeholder='Password' />
                             <div onClick={() => setPshow(!pshow)} className=" absolute bottom-[10px]  right-0">
                                 {pshow == true ? <FaEye /> : <FaEyeSlash />}
 

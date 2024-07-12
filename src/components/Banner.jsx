@@ -37,7 +37,7 @@ const Banner = () => {
             style={{
               width: "30px",
               color: "transparent",
-              padding:"10px 0",
+              padding:"7px 0",
               borderRight: "3px #fff solid"
             }}
           >
@@ -48,28 +48,28 @@ const Banner = () => {
 
   return (
     <>
+    <div className="lg:pt-[100px]">
+    <Slider {...settings}> 
     
-     <Slider {...settings}> 
+    <div className="">
+      <img src={BanImg} alt="banner" />
+    </div>
+    <div className="">
+      <img src={BanImg} alt="banner" />
+    </div>
+    <div className="">
+      <img src={BanImg} alt="banner" />
+    </div>
+    <div className="">
+      <img src={BanImg} alt="banner" />
+    </div>
     
-      <div className="">
-        <img src={BanImg} alt="banner" />
-      </div>
-      <div className="">
-        <img src={BanImg} alt="banner" />
-      </div>
-      <div className="">
-        <img src={BanImg} alt="banner" />
-      </div>
-      <div className="">
-        <img src={BanImg} alt="banner" />
-      </div>
-      <div className="">
-        <img src={BanImg} alt="banner" />
-      </div>
+  
+  </Slider>
+    </div>
     
-    </Slider>
 
-    <div className=" border-b-2 border-[#262626] bottom-0 left-0">
+    <div className=" border-b-2 border-[#262626] bottom-0 left-0 ">
     <Container>
         <Flex className="justify-between items-center  py-4 px-3">
             <div className="">

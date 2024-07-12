@@ -101,9 +101,9 @@ const Navber = () => {
 
     return (
         <>
-            <div className="bg-[#D8D8D8] h-[100px] px-3 z-0  ">
+            <div className="bg-[#D8D8D8] h-[100px] px-3  lg:fixed w-full z-50  ">
                 <Container>
-                    <Flex className=" h-[100px]  items-center g ">
+                    <Flex className=" h-[100px]  items-center  ">
                         <div className=" lg:w-[35%] w-full relative">
                             <div className="">
                                 <div ref={cartref} className="flex lg:items-center items-center  gap-x-3">
@@ -193,7 +193,7 @@ const Navber = () => {
                                         </div>
                                         <div className="">
                                             <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out bg-white hover:bg-[#000] hover:text-[#fff]' href="#">
-                                                <Link to="/Login">Log In</Link>
+                                                Log In
                                             </a>
                                         </div>
                                         <div className="">
@@ -217,11 +217,11 @@ const Navber = () => {
 
                             {userShow &&
                                 <div className="">
-                                    <div className="w-[360px] bg-[#F5F5F3] absolute z-50 top-[58px] right-0">
+                                    <div className="w-[360px] bg-[#F5F5F3] absolute z-50 top-[58px] right-0 overflow-y-scroll lg:h-[300px] h-[100px]">
                                         {data.map((item)=>(
 
-                                        <div className="py-3 px-3">
-                                            <div className="flex justify-around items-center">
+                                        <div className="py-3 px-3  ">
+                                            <div className="flex justify-around items-center ">
                                                 <div className="">
                                                     <img className=' w-[100px] h-[100px]' src={item.thumbnail} alt="" />
                                                 </div>
@@ -240,10 +240,14 @@ const Navber = () => {
                                         <h2 className='pl-5 font-sans font-medium   text-[16px]  text-[#262626]'>Subtotal: <span className='font-sans  font-bold   text-[16px]  text-[#262626]'>{totalprice}$</span></h2>
                                         <div className="flex justify-around pt-2">
                                             <div className="">
-                                                <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px] bg-[#000]  text-[#fff] duration-500 ease-in-out hover:bg-[#fff] hover:text-[#262626]' href="#">View Cart</a>
+                                            <Link to="/cart">
+                                                <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px] bg-[#000]  text-[#fff] duration-500 ease-in-out hover:bg-[#fff] hover:text-[#262626]' href="#"> View Cart</a>
+                                                    </Link>
                                             </div>
                                             <div className="">
+                                            <Link to="/Checkout">
                                                 <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out hover:bg-[#000] hover:text-[#fff]' href="#">Checkout</a>
+                                                    </Link>
                                             </div>
                                         </div>
                                     

@@ -17,7 +17,7 @@ const Checkout = () => {
 
 
   return (
-    <section className='py-[100px]'>
+    <section className='lg:py-[150px] '>
 
       <Container>
         <div className=" items-center">

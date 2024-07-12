@@ -7,7 +7,7 @@
 }
 @media(max-width:640px){
     .slick-dots{
-        left: 0 !important;
+        left: 0px !important;
     }
     .ami{
         padding: 0px !important;

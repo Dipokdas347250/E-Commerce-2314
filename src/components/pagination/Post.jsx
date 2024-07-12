@@ -4,6 +4,8 @@ import { FaHeart } from "react-icons/fa";
 import { TfiReload } from "react-icons/tfi";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import {useDispatch} from "react-redux"
+import { addTocart } from '../slice/productSlice';
 
 const Post = ({ allData, categorySearchFilter ,meltiList}) => {
   
@@ -11,6 +13,8 @@ const Post = ({ allData, categorySearchFilter ,meltiList}) => {
   let [filtershow, setFilterShow] = useState([])
 
   let [catshow,setCatShow] = useState(true)
+  let dispatch = useDispatch()
+
  
 
 
@@ -30,6 +34,9 @@ const Post = ({ allData, categorySearchFilter ,meltiList}) => {
     setFilterShow(filterYou)
     setCatShow(true)
 
+  }
+  let handlePcart= (item)=>{
+    dispatch(addTocart({...item,qun:1}))
   }
 
 
@@ -81,16 +88,18 @@ const Post = ({ allData, categorySearchFilter ,meltiList}) => {
        { allData.map((item) => (
 
         <div className="lg:w-[32%] py-5 ">
-          <Link to={`/product/${item.id}`}>
+          
             <div className="">
 
               <div className="relative group overflow-hidden ">
+              <Link to={`/product/${item.id}`}>
                 <img src={item.thumbnail} className="lg:h-[350px] h-[250px]" alt="123" />
+                </Link>
                 <div className="bg-[#fff] absolute duration-300 ease-in-out left-0 bottom-[-150px] h-[150px]  w-full group-hover:bottom-[0] flex items-center justify-end">
                   <ul className='pr-5'>
-                    <li className='flex items-center justify-end gap-x-4  duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Add to Wish List <FaHeart /></li>
-                    <li className='flex items-center  justify-end gap-x-4 py-3 duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Compear<TfiReload /></li>
-                    <li className='flex items-center  justify-end gap-x-4 duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676]'>Add to Cart <FaShoppingCart /></li>
+                    <li className='flex items-center justify-end gap-x-4  duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676] cursor-pointer'>Add to Wish List <FaHeart /></li>
+                    <li className='flex items-center  justify-end gap-x-4 py-3 duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676] cursor-pointer'>Compear<TfiReload /></li>
+                    <li onClick={()=>handlePcart(item)} className='flex items-center  justify-end gap-x-4 duration-300 ease-in-out font-sans font-bold   text-[16px]  text-[#262626] hover:text-[#767676] cursor-pointer'>Add to Cart <FaShoppingCart /></li>
                   </ul>
                 </div>
 
@@ -100,7 +109,7 @@ const Post = ({ allData, categorySearchFilter ,meltiList}) => {
                 <h3 className='font-sans font-bold   text-[22px]  text-[#262626]'>${item.price}</h3>
               </div>
             </div>
-          </Link>
+          
         </div>
       ))}
        </div>
