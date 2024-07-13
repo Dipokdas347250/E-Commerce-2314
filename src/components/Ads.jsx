@@ -8,7 +8,7 @@ import Flex from './Flex'
 const Ads = () => {
   return (
     <>
-    <section className=' lg:py-[174px] py-[20px]'>
+    <section className=' lg:py-[174px] py-[20px] px-3'>
        <Container>
         <Flex className="justify-between">
         <div className=" w-[49%]">

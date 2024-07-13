@@ -47,7 +47,7 @@ const Cart = () => {
 
 
   return (
-    <section className='my-20 lg:pt-[100px]'>
+    <section className='my-20 lg:pt-[100px] px-3'>
        <Container>
         <h2 className='font-sans font-bold   text-[42px]  text-[#262626] '>Cart</h2>
         <p className='font-sans font-bold   text-[16px]  text-[#262626] '>Home &#62; Cart</p>

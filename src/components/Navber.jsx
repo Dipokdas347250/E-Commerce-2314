@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { apiData } from './ContextApi';
 import { Link, useNavigate } from 'react-router-dom';
 import { removeProduct } from './slice/productSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navber = () => {
     let info = useContext(apiData);
@@ -24,10 +26,12 @@ const Navber = () => {
     let [searchFilter, setSearchFilter] = useState([]);
     let [selectedIndex, setSelectedIndex] = useState(-1); // Track selected index
     let navigate = useNavigate();
+    let dispatch = useDispatch()
 
     let cartref = useRef();
     let usertref = useRef();
     let mytref = useRef();
+    let userthakbe = useRef();
 
     
 
@@ -75,6 +79,24 @@ const Navber = () => {
         }
     };
 
+    let handleDelete = (index)=>{
+        dispatch(removeProduct(index))
+    }
+    let handleToviewcart = ()=>{
+        toast("Go to View cart")
+        setTimeout(()=>{
+            navigate("/cart")
+        },2000)
+        setUserShow(false);
+    }
+    let handleCheck = ()=>{
+        toast("Go to View cart")
+        setTimeout(()=>{
+            navigate("/Checkout")
+        },2000)
+        setUserShow(false);
+    }
+
     useEffect(() => {
         document.addEventListener('click', (e) => {
             if (cartref.current.contains(e.target) === true) {
@@ -86,6 +108,9 @@ const Navber = () => {
                 setUserShow(!userShow);
             } else {
                 setUserShow(false);
+            }
+            if(userthakbe.current.contains(e.target)){
+                setUserShow(true);
             }
             if (mytref.current.contains(e.target) === true) {
                 setMyShow(!myShow);
@@ -119,22 +144,22 @@ const Navber = () => {
                                 <div className=" absolute z-50 top-[58px] left-0 bg-[#262626] w-[300px] rounded-lg">
                                     <ul>
                                         <li className="text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 ">
-                                        Accesories
+                                            Accesories
                                         </li>
                                         <li className="text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 ">
-                                        Furniture
+                                            Furniture
                                         </li>
                                         <li className="text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 ">
-                                        Electronics
+                                            Electronics
                                         </li>
                                         <li className="text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 ">
-                                        Clothes
+                                            Clothes
                                         </li>
                                         <li className="text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 ">
-                                        Bags
+                                            Bags
                                         </li>
                                         <li className="text-[rgba(255,255,255,0.9)] font-sans text-[16px] cursor-pointer py-2 pl-3 duration-500 ease-in-out hover:pl-6 ">
-                                        Home appliances
+                                            Home appliances
                                         </li>
                                     </ul>
                                 </div>
@@ -215,48 +240,67 @@ const Navber = () => {
 
 
 
-                            {userShow &&
+                          <div ref={userthakbe} className="">
+                          {userShow  &&
                                 <div className="">
                                     <div className="w-[360px] bg-[#F5F5F3] absolute z-50 top-[58px] right-0 overflow-y-scroll lg:h-[300px] h-[100px]">
-                                        {data.map((item)=>(
+                                        {data.map((item,index) => (
 
-                                        <div className="py-3 px-3  ">
-                                            <div className="flex justify-around items-center ">
-                                                <div className="">
-                                                    <img className=' w-[100px] h-[100px]' src={item.thumbnail} alt="" />
+                                            <div className="py-3 px-3  ">
+                                                <div className="flex justify-around items-center ">
+                                                    <div className="">
+                                                        <img className=' w-[100px] h-[100px]' src={item.thumbnail} alt="" />
+                                                    </div>
+                                                    <div className="font-sans  font-bold   text-[16px]  text-[#262626]">
+                                                        <h2>{item.title}</h2>
+                                                        <h3>{item.price}$</h3>
+                                                    </div>
+                                                    <div onClick={()=>handleDelete(index)} className="">
+                                                        <GiTireIronCross />
+                                                    </div>
                                                 </div>
-                                                <div className="font-sans  font-bold   text-[16px]  text-[#262626]">
-                                                    <h2>{item.title}</h2>
-                                                    <h3>{item.price}$</h3>
-                                                </div>
-                                                <div className="">
-                                                    <GiTireIronCross />
-                                                </div>
+
                                             </div>
-
-                                        </div>
                                         ))}
-                                         
-                                        <h2 className='pl-5 font-sans font-medium   text-[16px]  text-[#262626]'>Subtotal: <span className='font-sans  font-bold   text-[16px]  text-[#262626]'>{totalprice}$</span></h2>
+                                        {data.length > 0 &&
+
+                                       <div className="">
+                                       <h2 className='pl-5 font-sans font-medium   text-[16px]  text-[#262626]'>Subtotal: <span className='font-sans  font-bold   text-[16px]  text-[#262626]'>{totalprice}$</span></h2>
                                         <div className="flex justify-around pt-2">
                                             <div className="">
-                                            <Link to="/cart">
-                                                <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px] bg-[#000]  text-[#fff] duration-500 ease-in-out hover:bg-[#fff] hover:text-[#262626]' href="#"> View Cart</a>
-                                                    </Link>
+                                                <a onClick={handleToviewcart} >
+                                                    <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px] bg-[#000]  text-[#fff] duration-500 ease-in-out hover:bg-[#fff] hover:text-[#262626]' href="#"> View Cart</a>
+                                                </a>
                                             </div>
                                             <div className="">
-                                            <Link to="/Checkout">
-                                                <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out hover:bg-[#000] hover:text-[#fff]' href="#">Checkout</a>
-                                                    </Link>
+                                                <a onClick={handleCheck} >
+                                                    <a className='w-[148px] h-[50px] border-2 border-[#262626] inline-block text-center leading-[50px] font-sans font-normal   text-[16px]  text-[#262626] duration-500 ease-in-out hover:bg-[#000] hover:text-[#fff]' href="#">Checkout</a>
+                                                </a>
                                             </div>
                                         </div>
-                                    
+                                       </div>
+                                        }
+
                                     </div>
-                                   
+
                                 </div>
 
 
                             }
+                          </div>
+                          <ToastContainer 
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        
+        />
 
 
                         </div>

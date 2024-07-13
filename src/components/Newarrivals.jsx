@@ -48,7 +48,7 @@ const Newarrivals = () => {
 
 
   return (
-    <section className=''>
+    <section className=' px-3'>
       <Container>
         <h2 className=' font-sans font-bold   text-[32px]  text-[#262626]'>New Arrivals</h2>
 

@@ -19,9 +19,16 @@ const Signup = () => {
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let [pshow, setPshow] = useState(false)
+    const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
 
-    let handleSubmit = () => {
-        createUserWithEmailAndPassword(auth, email, password)
+    let handleSubmit = (e) => {
+        if(validPassword.test(password)){
+            
+        }else{
+        
+        }
+    
+    createUserWithEmailAndPassword(auth, email, password)
             .then((user) => {
                 
                 
@@ -60,6 +67,7 @@ const Signup = () => {
                 console.log(errorCode);
                 console.log(errorMessage);
             });
+
     }
     let handleFirstname = (e) =>{
         setFirstname(e.target.value);
@@ -79,7 +87,7 @@ const Signup = () => {
         setPassword(e.target.value);
     }
     return (
-        <section className=' lg:py-[150px]'>
+        <section className=' lg:py-[150px] px-3'>
             <Container>
                 <form action="">
                     <div className=" items-center relative after:absolute after:contain-[''] after:h-[2px] after:w-[100%] after:bottom-[-50px] after:left-0 after:bg-[#BCC6CC]">

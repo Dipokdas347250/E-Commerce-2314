@@ -12,7 +12,7 @@ import prod04 from "../assets/prod04.png"
 const Pro2 = () => {
   return (
    <>
-   <section className='lg:py-[130px] py-[20px]'>
+   <section className='lg:py-[130px] py-[20px] px-3'>
     <Container>
         <div className="font-sans font-bold   text-[36px] text-[#000] py-[20px] ">
         <h2>Special Offers</h2>

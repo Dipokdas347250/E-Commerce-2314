@@ -5,7 +5,7 @@ import Map from "../assets/Map.png"
 const Contacts = () => {
     return (
         <>
-            <section className='py-[124px]'>
+            <section className='py-[124px] px-4'>
                 <Container>
                     <div className="">
                         <div className="">

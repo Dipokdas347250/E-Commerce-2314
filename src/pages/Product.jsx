@@ -37,6 +37,9 @@ const Product = () => {
   let [priced,setPriced] = useState([])
 
   let [meltiList,setMeltiList] = useState("")
+  let [lowPrice,setLowprice] = useState("")
+  let [highPrice,setHighprice] = useState("")
+  let [filterprice,setFilterprice] = useState([])
 
 
   for (let i = 0; i < Math.ceil( categorySearchFilter.length > 0 ? categorySearchFilter : data.length / parPages); i++) {
@@ -88,10 +91,14 @@ const Product = () => {
     
   }
 
-  let handlePrice = (citem) =>{
-    let PriceFilter = data.filter((item)=> item.price == citem)
-    setCategorySearchFilter(PriceFilter)
+  let handlePrice = (value) =>{
+   setLowprice(value.low)
+   setHighprice(value.high)
+   let priceFilter = data.filter((item)=>item.price > value.low && item.price < value.high)
+   setFilterprice(priceFilter);
   }
+  console.log(filterprice);
+  
   
 
 
@@ -103,7 +110,7 @@ const Product = () => {
 
   return (
     <>
-      <section className='py-[124px] '>
+      <section className='py-[124px] px-4 '>
 
         <Container>
           <div className=" items-center ">
@@ -175,14 +182,22 @@ const Product = () => {
                     
                   </div>
                   {priceshow &&
+                 
                   <ul className='overflow-y-scroll h-[300px] '>
-                    {priced.map((item)=>(
+                   
 
-                  <li onClick={()=>handlePrice(item)} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>${item}</li>
-                    ))}
+                  <li onClick={()=>handlePrice({low:0 , high:10})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>0$ - 10$</li>
+                  <li onClick={()=>handlePrice({low:10 , high:20})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>10$ - 20$</li>
+                  <li onClick={()=>handlePrice({low:20 , high:50})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>20$ - 50$</li>
+                  <li onClick={()=>handlePrice({low:50 , high:100})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>50$ - 100$</li>
+                  <li onClick={()=>handlePrice({low:100 , high:500})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>100$ - 500$</li>
+                  <li onClick={()=>handlePrice({low:500 , high:1000})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>500$ - 1000$</li>
+                  <li onClick={()=>handlePrice({low:1000 , high:2000})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>1000$ - 2000$</li>
+                  <li onClick={()=>handlePrice({low:2000 , high:4000})} className=' relative font-sans font-semibold   text-[16px]  text-[#262626] mt-[20px] mb-[40px] after:absolute after:content-[""] after:h-[2px] after:w-full after:bg-[#D8D8D8] after:bottom-[-20px] after:left-0 cursor-pointer duration-300 ease-in-out hover:ml-[10px]'>2000$ - 4000$</li>
+                   
                 
                 </ul>
-                  }
+                 }
                   
                 </div>
               </div>
@@ -218,7 +233,7 @@ const Product = () => {
                 <div className="lg:w-[35%] w-full">
                 <div className="">
                     <label htmlFor="" className='text-[16px] font-sans text-[#767676] font-normal'>Show : </label>
-                    <select name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[100px] px-[100px] py-[8px] text-[16px] font-sans text-[#767676] font-normal lg:mt-0 mt-[20px]'>
+                    <select name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[90px] px-[90px] py-[8px] text-[16px] font-sans text-[#767676] font-normal lg:mt-0 mt-[20px]'>
                       <option value="">36</option>
                       <option value="">30</option>
                       <option value="">24</option>
@@ -237,7 +252,7 @@ const Product = () => {
                 </div>
               </div>
               <div className="">
-                <Post allData={allData} categorySearchFilter={categorySearchFilter} meltiList={meltiList} />
+                <Post allData={allData} categorySearchFilter={categorySearchFilter} meltiList={meltiList} filterprice={filterprice} />
 
               </div>
               <div className="lg:text-end">

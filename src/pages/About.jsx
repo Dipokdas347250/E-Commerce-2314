@@ -9,7 +9,7 @@ const About = () => {
    
   return (
     <>
-    <section className='py-[124px]'>
+    <section className='py-[124px] px-3'>
         <Container>
             <h2 className='font-sans font-bold   text-[42px]  text-[#262626] '>About</h2>
             <Flex className="justify-between py-[50px]">

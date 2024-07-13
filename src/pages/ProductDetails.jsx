@@ -48,7 +48,7 @@ const ProductDetails = () => {
  
   return (
     <>
-      <section className='lg:pb-[500px] pb-[100px] lg:pt-[100px]'>
+      <section className='lg:pb-[500px] pb-[100px] lg:pt-[100px] px-3'>
         <Container>
           <Flex className="flex-wrap justify-between ">
             {singleData?.images?.map((item)=>(

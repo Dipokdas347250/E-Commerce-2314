@@ -4,7 +4,7 @@ import Container from '../components/Container'
 export const Myaccount = () => {
   return (
     <>
-    <section className='py-[100px]'>
+    <section className='py-[100px] px-3'>
         <Container>
          <div className="pt-[50px]">
          <h2 className='font-sans font-bold   text-[42px]  text-[#262626] '>Myaccount</h2>

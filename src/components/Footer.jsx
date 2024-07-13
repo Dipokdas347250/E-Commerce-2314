@@ -7,7 +7,7 @@ import { FaFacebookF,FaLinkedinIn,FaInstagram  } from "react-icons/fa";
 const Footer = () => {
   return (
    <>
-   <footer className='bg-[#F5F5F3] py-[55px]'>
+   <footer className='bg-[#F5F5F3] py-[55px] px-4'>
     <Container>
         <Flex className="  justify-between flex-wrap ">
            

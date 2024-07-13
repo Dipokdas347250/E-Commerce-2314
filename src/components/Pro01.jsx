@@ -13,7 +13,7 @@ import pro04 from "../assets/pro04.png"
 const Pro01 = () => {
   return (
    <>
-   <section className='lg:py-[130px] py-[20px]'>
+   <section className='lg:py-[130px] py-[20px] px-3'>
     <Container>
         <Flex className="justify-between flex-wrap">
         <div className="lg:w-[24%] w-full sm:w-[49%] md:w-[32%]">

@@ -48,7 +48,7 @@ const Login = () => {
     }
 
     return (
-        <section className='lg:py-[150px]'>
+        <section className='lg:py-[150px] px-3'>
             <Container>
                 <div className=" items-center ">
                     <h2 className='font-sans font-bold   text-[42px]  text-[#262626] '>Login</h2>
