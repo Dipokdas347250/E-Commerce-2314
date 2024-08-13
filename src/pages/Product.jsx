@@ -29,17 +29,19 @@ const Product = () => {
   let allData = data.slice(FirstPages, LastPages)
 
 
-  let pageNumber = []
-  let [category,setCategory] = useState([])
-  let [categorySearchFilter,setCategorySearchFilter] = useState([])
+  let pageNumber = [];
+  let [category,setCategory] = useState([]);
+  let [categorySearchFilter,setCategorySearchFilter] = useState([]);
    
-  let [brande,setBrande] = useState([])
-  let [priced,setPriced] = useState([])
+  let [brande,setBrande] = useState([]);
+  let [priced,setPriced] = useState([]);
 
-  let [meltiList,setMeltiList] = useState("")
-  let [lowPrice,setLowprice] = useState("")
-  let [highPrice,setHighprice] = useState("")
-  let [filterprice,setFilterprice] = useState([])
+  let [meltiList,setMeltiList] = useState("");
+  let [lowPrice,setLowprice] = useState("");
+  let [highPrice,setHighprice] = useState("");
+  let [filterprice,setFilterprice] = useState([]);
+
+  let [mobileview,setMobileview] = useState(true);
 
 
   for (let i = 0; i < Math.ceil( categorySearchFilter.length > 0 ? categorySearchFilter : data.length / parPages); i++) {
@@ -97,7 +99,7 @@ const Product = () => {
    let priceFilter = data.filter((item)=>item.price > value.low && item.price < value.high)
    setFilterprice(priceFilter);
   }
-  console.log(filterprice);
+ 
   
   
 
@@ -106,6 +108,26 @@ const Product = () => {
   let handlelist=  () =>{
     setMeltiList("activeList");
   }
+  
+  let hendleshowData = (e)=>{
+    setPerPages(e.target.value);
+      
+  }
+
+   useEffect(()=>{
+     function navbermenu(){
+      if(window.innerWidth < 1024){
+        setMobileview(false)
+      }else{
+        setMobileview(true)
+      }
+
+     }
+     navbermenu()
+     window.addEventListener("resize" , navbermenu)
+      
+      
+   },[]);
 
 
   return (
@@ -233,10 +255,10 @@ const Product = () => {
                 <div className="lg:w-[35%] w-full">
                 <div className="">
                     <label htmlFor="" className='text-[16px] font-sans text-[#767676] font-normal'>Show : </label>
-                    <select name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[90px] px-[90px] py-[8px] text-[16px] font-sans text-[#767676] font-normal lg:mt-0 mt-[20px]'>
-                      <option value="">36</option>
-                      <option value="">30</option>
-                      <option value="">24</option>
+                    <select onChange={hendleshowData} name="" id="" className='border-[1px] border-[#767676] rounded-sm text-start lg:px-[90px] px-[90px] py-[8px] text-[16px] font-sans text-[#767676] font-normal lg:mt-0 mt-[20px]'>
+                      <option value="9">9</option>
+                      <option value="18">18</option>
+                      <option value="27">27</option>
                     </select>
                   </div>
                   {/* <div className="">
@@ -256,7 +278,7 @@ const Product = () => {
 
               </div>
               <div className="lg:text-end">
-                <PaginationArea pageNumber={pageNumber} paginate={paginate} currentPages={currentPages} next={next} prev={prev} />
+                <PaginationArea pageNumber={pageNumber} paginate={paginate} currentPages={currentPages} next={next} prev={prev} mobileview = {mobileview} />
               </div>
 
             </div>
